@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Maintenance — helyot-nas</title>
+  <style>
+    :root{
+      --bg1:#0b1020;
+      --bg2:#121a33;
+      --card:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 500px at 15% 20%, rgba(125,211,252,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 30%, rgba(167,139,250,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .wrap{width:100%; max-width:880px;}
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:20px;
+      padding:28px;
+      box-shadow: 0 20px 70px rgba(0,0,0,.45);
+      backdrop-filter: blur(10px);
+    }
+    .top{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(0,0,0,.25);
+      border:1px solid var(--stroke);
+      color:var(--muted);
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(125,211,252,.35);
+    }
+    h1{
+      margin:16px 0 8px;
+      font-size: clamp(26px, 3.8vw, 40px);
+      line-height:1.1;
+      letter-spacing:-.6px;
+    }
+    p{margin:0; color:var(--muted); font-size: 16px; line-height:1.55;}
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+    }
+    @media (max-width: 720px){
+      .grid{grid-template-columns: 1fr;}
+    }
+    .panel{
+      background:rgba(0,0,0,.18);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+    }
+    .kv{display:grid; grid-template-columns: 150px 1fr; gap:10px; margin-top:10px;}
+    .k{color:rgba(255,255,255,.62); font-weight:600;}
+    .v{color:rgba(255,255,255,.88); font-weight:600;}
+    .btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:12px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .btn:hover{background:rgba(255,255,255,.10)}
+    .btn.primary{
+      border-color: rgba(125,211,252,.35);
+      background: linear-gradient(90deg, rgba(125,211,252,.18), rgba(167,139,250,.18));
+    }
+    .footer{
+      margin-top:14px;
+      color:rgba(255,255,255,.55);
+      font-size:13px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+    code{
+      padding:2px 6px;
+      border-radius:8px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.08);
+      color:rgba(255,255,255,.88);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="badge"><span class="dot"></span>Maintenance programmée</div>
+        <div class="badge">helyot-nas · Nextcloud</div>
+      </div>
+
+      <h1>🚧 Le cloud est temporairement indisponible</h1>
+      <p>Une maintenance est en cours. Le service reviendra automatiquement une fois terminée.</p>
+
+      <div class="grid">
+        <div class="panel">
+          <p><strong>Ce que tu peux faire :</strong></p>
+          <div class="btns">
+            <a class="btn primary" href="https://helyot-nas.duckdns.org">Réessayer</a>
+            <a class="btn" href="mailto:">Contacter l’admin</a>
+          </div>
+          <p style="margin-top:12px;">Astuce : si tu utilises l’app Nextcloud Desktop, tes fichiers hors ligne restent accessibles.</p>
+        </div>
+
+        <div class="panel">
+          <p><strong>Détails</strong></p>
+          <div class="kv">
+            <div class="k">Statut</div><div class="v">Maintenance</div>
+            <div class="k">Retour prévu</div><div class="v">—</div>
+            <div class="k">Dernière mise à jour</div><div class="v"><span id="ts">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>Erreur ? Essaie dans 2–3 minutes. <code>CTRL + F5</code> pour forcer le rafraîchissement.</div>
+        <div>© helyot-nas</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Affiche une date "propre" sans serveur (juste pour info)
+    const d = new Date();
+    document.getElementById('ts').textContent = d.toLocaleString('fr-FR');
+  </script>
+</body>
+</html>
